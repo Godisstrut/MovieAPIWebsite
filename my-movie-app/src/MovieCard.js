@@ -1,10 +1,13 @@
-import movieImage from './img/Sagan_om_ringen.jpg';
+
 function MovieCard(props) {
     return(
         <div className="movieCard" >
-            <img src={movieImage} alt="bild på film" ></img>
-            <h1> Titel: {props.name} </h1>
-            <p> Info om film: </p>
+            <img src={props.movieImage} alt="bild på film" ></img>
+            <h1> Title: {props.title} </h1>
+            <p> Description {props.description} </p>
+            <p> Genre: {props.genre} </p>
+            <p> Imdb score: {props.score} </p>
+            <p >Personal score: {props.personalScore} </p>
         </div>
     )
 }
