@@ -27,7 +27,9 @@ function App() {
       movieImage = {lotrImage}
       title= { movieData ? movieData.Title : "Loading title "}
       description= {movieData ? movieData.Plot : "Loading description" }
-      genre= {movieData ? movieData.Genre : "Loading genre" } score="8.9" personalScore= {personalScore} />
+      genre= {movieData ? movieData.Genre : "Loading genre" } 
+      score= {movieData ? movieData.imdbRating : "Loading imdb rating" } 
+      personalScore= {personalScore} />
       <button onClick={IncreaseRating}>IncreaseRating</button>
     </div>
   );
