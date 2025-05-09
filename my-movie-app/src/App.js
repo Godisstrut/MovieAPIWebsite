@@ -19,15 +19,15 @@ function App() {
         console.log(data);
         setMovieData(data);
       });
-  }, []);
+  }, []); //Makes the request run only ones
   return (
     <div className="App">
       <Header />
       <MovieCard 
       movieImage = {lotrImage}
-      title= { movieData ? movieData.Title : "Loading"}
-      description="A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
-      genre="Fantasy" score="8.9" personalScore= {personalScore} />
+      title= { movieData ? movieData.Title : "Loading title "}
+      description= {movieData ? movieData.Plot : "Loading description" }
+      genre= {movieData ? movieData.Genre : "Loading genre" } score="8.9" personalScore= {personalScore} />
       <button onClick={IncreaseRating}>IncreaseRating</button>
     </div>
   );
