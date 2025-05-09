@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './Header';
 import MovieCard from './MovieCard';
-import lotrImage from "./img/Sagan_om_ringen.jpg"
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -17,17 +16,18 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setMovieData(data);
+        setMovieData(data); //Updates movieData with movie data
       });
   }, []); //Makes the request run only ones
   return (
     <div className="App">
       <Header />
       <MovieCard 
-      movieImage = {lotrImage}
+      movieImage = {movieData ? movieData.Poster : "Loading image" }
       title= { movieData ? movieData.Title : "Loading title "}
       description= {movieData ? movieData.Plot : "Loading description" }
       genre= {movieData ? movieData.Genre : "Loading genre" } 
+      runtime= {movieData ? movieData.Runtime : "Loading runtime" }
       score= {movieData ? movieData.imdbRating : "Loading imdb rating" } 
       personalScore= {personalScore} />
       <button onClick={IncreaseRating}>IncreaseRating</button>

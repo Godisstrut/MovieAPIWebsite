@@ -1,9 +1,14 @@
 .App {
   text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .movieCard {
   border: 1px solid black;
+}
+
+.movieCard img {
+  margin: 1em;
 }
 
 .App-logo {
