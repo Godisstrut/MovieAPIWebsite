@@ -17,6 +17,16 @@ body {
   margin: 1em;
 }
 
+input {
+  width: 20vw;
+  height: 2em;
+  font-size: 1.2em;
+  border-radius: 16px;
+  border: none;
+  text-align: center;
+  box-shadow: 0 0 5px #666;
+}
+
 .movieCard {
   border: 1px solid black;
   display: flex;
