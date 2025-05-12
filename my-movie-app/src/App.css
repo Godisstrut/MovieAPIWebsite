@@ -19,10 +19,18 @@ body {
 
 .movieCard {
   border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .movieCard img {
   margin: 1em;
+}
+
+.movieCard img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.3s ease;
 }
 
 .App-logo {

@@ -6,36 +6,60 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
-  const [personalScore, setPersonalScore] = useState(9)
-  const [movieData, setMovieData] = useState([])
-  const IncreaseRating = () => {
-    setPersonalScore(prevScore => prevScore + 1)
-  }
-
-  const fetchMovie = (title) => {
-    
-  }
-  useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=Star+wars`)
-      .then((response) => response.json())
-      .then((data) => {
+  const [personalScore, setPersonalScore] = useState(9);
+  const [movieData, setMovieData] = useState([]);
+  
+  // Function for retrieving movie data based on title
+  const fetchMovie = async (title) => {
+    try {
+      const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`);
+      const data = await response.json();
+      if (data.Response === 'True') {
         console.log(data);
-        setMovieData(data); //Updates movieData with movie data
-      });
-  }, []); //Makes the request run only ones
+        return data;
+      } else {
+        console.error(`Error, couldnt find movie ${title}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error getting movie data', error);
+      return null;
+    }
+  };
+  useEffect(() => {
+    const movieTitles = ['Star Wars', 'Moneyball', 'Inception', 'Fight club']; //Movies currently being displayed
+
+    const fetchAllMovies = async () => {
+      const movies = await Promise.all(
+        movieTitles.map(title => fetchMovie(title))
+      );
+      // Filters away movies that couldnt be found
+      setMovieData(movies.filter(movie => movie));
+    };
+
+    fetchAllMovies();
+  }, [apiKey]); // Adds APIkey as dependency for useEffect
+
   return (
     <div className="App">
       <Header />
       <SearchBar />
-      <MovieCard 
-      movieImage = {movieData ? movieData.Poster : "Loading image" }
-      title= { movieData ? movieData.Title : "Loading title "}
-      description= {movieData ? movieData.Plot : "Loading description" }
-      genre= {movieData ? movieData.Genre : "Loading genre" } 
-      runtime= {movieData ? movieData.Runtime : "Loading runtime" }
-      score= {movieData ? movieData.imdbRating : "Loading imdb rating" } 
-      personalScore= {personalScore} />
-      <button onClick={IncreaseRating}>IncreaseRating</button>
+      {movieData.length > 0 ? (
+        movieData.map((movie, index) => (
+          <MovieCard
+            key={index} // Unique key identifier
+            movieImage={movie.Poster}
+            title={movie.Title}
+            description={movie.Plot}
+            genre={movie.Genre}
+            runtime={movie.Runtime}
+            score={movie.imdbRating}
+            personalScore={personalScore}
+          />
+        ))
+      ) : (
+        <p>Laddar filmer...</p>
+      )}
     </div>
   );
 }
