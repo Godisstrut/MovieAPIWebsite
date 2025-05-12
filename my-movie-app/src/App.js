@@ -12,6 +12,9 @@ function App() {
     setPersonalScore(prevScore => prevScore + 1)
   }
 
+  const fetchMovie = (title) => {
+    
+  }
   useEffect(() => {
     fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=Star+wars`)
       .then((response) => response.json())

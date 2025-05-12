@@ -1,6 +1,11 @@
+body {
+  background-color: #22254b;
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .App {
   text-align: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .header {
