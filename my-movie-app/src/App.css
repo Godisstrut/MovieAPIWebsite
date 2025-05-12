@@ -3,6 +3,15 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  margin: 1em;
+}
+
 .movieCard {
   border: 1px solid black;
 }

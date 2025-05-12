@@ -1,18 +1,19 @@
 import './App.css';
-import Header from './Header';
-import MovieCard from './MovieCard';
+import Header from './components/Header';
+import MovieCard from './components/MovieCard';
 import { useState, useEffect } from 'react';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [personalScore, setPersonalScore] = useState(9)
-  const [movieData, setMovieData] = useState()
+  const [movieData, setMovieData] = useState([])
   const IncreaseRating = () => {
     setPersonalScore(prevScore => prevScore + 1)
   }
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=The+Lord+of+the+Rings&y=2001`)
+    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=Star+wars`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <SearchBar />
       <MovieCard 
       movieImage = {movieData ? movieData.Poster : "Loading image" }
       title= { movieData ? movieData.Title : "Loading title "}
