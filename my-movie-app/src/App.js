@@ -8,6 +8,7 @@ function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [personalScore, setPersonalScore] = useState(9);
   const [movieData, setMovieData] = useState([]);
+  const [movieSearch, setMovieSearch] = useState("");
   
   // Function for retrieving movie data based on title
   const fetchMovie = async (title) => {
@@ -43,7 +44,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SearchBar />
+      <SearchBar movieSearch={movieSearch} />
       {movieData.length > 0 ? (
         movieData.map((movie, index) => (
           <MovieCard
