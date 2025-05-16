@@ -3,12 +3,15 @@ import Header from './components/Header';
 import MovieCard from './components/MovieCard';
 import { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
+import Overlay from './components/Overlay';
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [personalScore, setPersonalScore] = useState(9);
   const [movieData, setMovieData] = useState([]);
   const [movieSearch, setMovieSearch] = useState("");
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [overlayVisible, setOverlayVisible] = useState(false);
   
   // Function for retrieving movie data based on title
   const fetchMovie = async (title) => {
