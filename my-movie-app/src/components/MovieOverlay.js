@@ -1,7 +1,7 @@
 //Component that displays info about a movie
-function Overlay(props) {
+function MovieOverlay(props) {
     return(
-        <div className="overlay">
+        <div className="movie-overlay">
             <img src={props.movieImage} alt="bild på film" ></img>
             <h2> Title: {props.title} </h2>
             <p> Description: {props.description} </p>
@@ -13,4 +13,4 @@ function Overlay(props) {
     )
 }
 
-export default Overlay;
+export default MovieOverlay;

@@ -3,7 +3,7 @@ import Header from './components/Header';
 import MovieCard from './components/MovieCard';
 import { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
-import Overlay from './components/Overlay';
+import MovieOverlay from './components/MovieOverlay';
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -44,6 +44,16 @@ function App() {
     fetchAllMovies();
   }, [apiKey]); // Adds APIkey as dependency for useEffect
 
+  const handleOpenOverlay = (movie) => {
+    setSelectedMovie(movie);
+    setOverlayVisible(true);
+  }
+
+  const handleCloseOverlay = (movie) => {
+    setOverlayVisible(false);
+    setSelectedMovie(null);
+  }
+
   return (
     <div className="App">
       <Header />
@@ -59,10 +69,15 @@ function App() {
             runtime={movie.Runtime}
             score={movie.imdbRating}
             personalScore={personalScore}
+            onMovieClick={handleOpenOverlay}
+            movie={movie}
           />
         ))
       ) : (
         <p>Laddar filmer...</p>
+      )}
+      {overlayVisible && selectedMovie && (
+        <MovieOverlay movie={selectedMovie} onClose={handleCloseOverlay} />
       )}
     </div>
   );
